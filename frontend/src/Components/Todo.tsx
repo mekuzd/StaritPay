@@ -1,8 +1,16 @@
-const Todo = ({ text }: { text: string }) => {
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import { task } from "../App";
+
+const Todo = ({ task }: { task: task }) => {
   return (
     <div className="todo">
       <div>
-        <h3>{text}</h3>
+        <h5>{task.task}</h5>
+      </div>
+      <div className="icons">
+        <FaEdit className="icon" />
+        <AiFillDelete className="icon" />
       </div>
     </div>
   );
