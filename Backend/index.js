@@ -1,13 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { PORT, MONGO_URI } = require("./src/Config/config");
+const Error404 = require("./src/middleware/error404");
 
 const app = express();
 
 //test route
 app.get("/", (req, res) => {
-  res.send("working");
+  res.status(200).send("working");
 });
+
+app.use(Error404); // unavailable route
 
 // connect to db and listen on PORT
 const start = async () => {
