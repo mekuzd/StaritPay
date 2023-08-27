@@ -56,12 +56,14 @@ function App() {
           <div className=" center-screen">
             <div className="spinner-border "></div>
           </div>
-        ) : (
+        ) : tasks.length > 0 ? (
           <div>
             {tasks.map((task: task) => (
               <Todo task={task} key={task._id} />
             ))}
           </div>
+        ) : (
+          <p>No todos available</p>
         )}
       </div>
     </>
