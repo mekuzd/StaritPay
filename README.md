@@ -1,6 +1,6 @@
 # TODOLIST
 
-## [StraitPay](https://strait-pay.vercel.app/)
+## [Todos](https://strait-pay.vercel.app/)
 
 Here are some key features of this web application:
 
