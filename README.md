@@ -18,11 +18,11 @@ PACKAGES AND STACKS USED
 - Node js
 - Express js ( Frame Work)
 - Mongo DB (data base)
-- Mongoose (DATABAS ORM)
+- Mongoose (DATABASE ORM)
 
 ---
 
-## CLIENT - SIDE
+## FRONTEND
 
 PACKAGES USED
 
