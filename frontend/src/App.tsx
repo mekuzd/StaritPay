@@ -20,7 +20,6 @@ function App() {
   // get all tasks handler
   const fetchTodos = async () => {
     try {
-      setloading(true);
       const response = await httpClient.get("/api/task");
       setTasks(response.data.tasks);
       setloading(false);
@@ -29,9 +28,12 @@ function App() {
       setloading(false);
     }
   };
+
+  // load Todos
   useEffect(() => {
     if (isMounted) {
       fetchTodos();
+      setloading(true);
     }
     return () => {
       isMounted = false;
@@ -45,10 +47,11 @@ function App() {
       toast.error(" please fill input field ");
       return;
     }
+    setTasks([...tasks, { task: task, _id: String(Date.now()) }]); // virtual addition before db response
+    setTask("");
     try {
       const response = await httpClient.post("/api/task", { task });
       toast.success(response.data.message);
-      setTask("");
       fetchTodos();
     } catch (error) {
       toast.error(getError(error as ApiError));
@@ -62,10 +65,20 @@ function App() {
       toast.error(" please fill input field ");
       return;
     }
+    //virtual update  before db response
+    const Tasks = tasks.map((tasks) => {
+      if (tasks._id == id) {
+        return { ...tasks, task: task };
+      } else {
+        return tasks;
+      }
+    });
+    setTasks(Tasks);
+    setTask("");
+
     try {
       const response = await httpClient.patch(`/api/task/${id}`, { task });
       toast.success(response.data.message);
-      setTask("");
       fetchTodos();
       setShowUpdateBtn(false);
     } catch (error) {
@@ -109,6 +122,8 @@ function App() {
                 setTask={setTask}
                 setShowUpdateBtn={setShowUpdateBtn}
                 fetchTodos={fetchTodos}
+                setTasks={setTasks}
+                tasks={tasks}
               />
             ))}
           </div>

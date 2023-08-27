@@ -12,6 +12,8 @@ type todoComponentProps = {
   setTask: (task: string) => void;
   setShowUpdateBtn: (showUpdateBtn: boolean) => void;
   fetchTodos: () => void;
+  setTasks: (Task: task[]) => void;
+  tasks: task[];
 };
 
 const Todo: React.FC<todoComponentProps> = ({
@@ -20,6 +22,8 @@ const Todo: React.FC<todoComponentProps> = ({
   setTask,
   setShowUpdateBtn,
   fetchTodos,
+  setTasks,
+  tasks,
 }) => {
   // handle setid and update task
   function handleSetId(id: string, task: string) {
@@ -31,6 +35,8 @@ const Todo: React.FC<todoComponentProps> = ({
   // delete tasks handler
   const deleteTask = async (e: React.SyntheticEvent, id: string) => {
     e.preventDefault();
+    const task = tasks.filter((todo) => todo._id !== id); //virtual removal before server response
+    setTasks(task);
     try {
       const response = await httpClient.delete(`/api/task/${id}`);
       toast.success(response.data.message);
