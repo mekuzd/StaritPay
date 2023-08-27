@@ -12,10 +12,13 @@ function App() {
   const [tasks, setTasks] = useState<task[]>([]);
   const [loading, setloading] = useState<boolean>(false);
   const [task, setTask] = useState<string>("");
+  const [showUpdateBtn, setShowUpdateBtn] = useState<boolean>(false);
+  const [id, SetId] = useState<string>("");
+
   let isMounted = true;
 
   // get all tasks handler
-  const FetchTodos = async () => {
+  const fetchTodos = async () => {
     try {
       setloading(true);
       const response = await httpClient.get("/api/task");
@@ -28,7 +31,7 @@ function App() {
   };
   useEffect(() => {
     if (isMounted) {
-      FetchTodos();
+      fetchTodos();
     }
     return () => {
       isMounted = false;
@@ -36,7 +39,7 @@ function App() {
   }, []);
 
   // Add tasks handler
-  const addtask = async (e: React.SyntheticEvent) => {
+  const addTask = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!task) {
       toast.error(" please fill input field ");
@@ -46,7 +49,25 @@ function App() {
       const response = await httpClient.post("/api/task", { task });
       toast.success(response.data.message);
       setTask("");
-      FetchTodos();
+      fetchTodos();
+    } catch (error) {
+      toast.error(getError(error as ApiError));
+    }
+  };
+
+  // update tasks handler
+  const updateTask = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (!task) {
+      toast.error(" please fill input field ");
+      return;
+    }
+    try {
+      const response = await httpClient.patch(`/api/task/${id}`, { task });
+      toast.success(response.data.message);
+      setTask("");
+      fetchTodos();
+      setShowUpdateBtn(false);
     } catch (error) {
       toast.error(getError(error as ApiError));
     }
@@ -64,9 +85,15 @@ function App() {
             placeholder="Add todos"
             onChange={(e) => setTask(e.target.value)}
           />
-          <button type="submit" onClick={addtask}>
-            Add
-          </button>
+          {showUpdateBtn ? (
+            <button type="submit" onClick={updateTask}>
+              Update
+            </button>
+          ) : (
+            <button type="submit" onClick={addTask}>
+              Add
+            </button>
+          )}
         </form>
         {loading ? (
           <div className=" center-screen">
@@ -75,7 +102,14 @@ function App() {
         ) : tasks.length > 0 ? (
           <div>
             {tasks.map((task: task) => (
-              <Todo task={task} key={task._id} />
+              <Todo
+                task={task}
+                key={task._id}
+                setId={SetId}
+                setTask={setTask}
+                setShowUpdateBtn={setShowUpdateBtn}
+                fetchTodos={fetchTodos}
+              />
             ))}
           </div>
         ) : (

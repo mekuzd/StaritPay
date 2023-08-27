@@ -50,7 +50,6 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 3s ease-in;
 }
 .icon {
   cursor: pointer;
