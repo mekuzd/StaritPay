@@ -3,7 +3,7 @@ const Task = require("../Model/task");
 const createTask = async (req, res) => {
   try {
     const task = await Task.create({ task: req.body.task });
-    res.status(200).json({ task });
+    res.status(200).json({ task, message: "task created" });
   } catch (error) {
     res.status(500).json({ message: "please contact your admin" });
   }
@@ -17,10 +17,10 @@ const updateTask = async (req, res) => {
         .status(404)
         .json({ message: `No task with id : ${req.params.id}` });
     }
-    const task = await Task.findOneAndUpdate({ _id: taskExist._id }, req.body, {
+    await Task.findOneAndUpdate({ _id: taskExist._id }, req.body, {
       new: true,
     });
-    res.status(200).json({ task });
+    res.status(200).json({ message: "task updated successfully" });
   } catch (error) {
     res.status(500).json({ message: "please contact your admin" });
   }
@@ -33,8 +33,8 @@ const deleteTask = async (req, res) => {
         .status(404)
         .json({ message: `No task with id : ${req.params.id}` });
     }
-    const task = await Task.findOneAndRemove({ _id: taskExist._id });
-    res.status(200).json({ task });
+    await Task.findOneAndRemove({ _id: taskExist._id });
+    res.status(200).json({ message: "task deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "please contact your admin" });
   }
