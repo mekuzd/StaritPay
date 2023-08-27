@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { PORT, MONGO_URI } = require("./src/Config/config");
 const Error404 = require("./src/middleware/error404");
 const taskRouter = require("./src/Routes/taskRouter");
+const userRouter = require("./src/Routes/userRouter");
 const app = express();
 
 // security packages
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
   res.status(200).send("working");
 });
 app.use("/api/task", taskRouter);
+app.use("/api/user", userRouter);
 app.use(Error404); // unavailable route
 
 // connect to db and listen on PORT
