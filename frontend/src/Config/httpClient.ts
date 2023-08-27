@@ -2,7 +2,9 @@ import axios from "axios";
 
 const httpClient = axios.create({
   baseURL:
-    process.env.NODE_ENV === "development" ? "http://localhost:5000" : "/",
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000"
+      : "https://straitpay.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
