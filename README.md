@@ -45,7 +45,9 @@ Packages
 
 ---
 
-## The frontend runs on PORT 3030 with command Npm run dev, while the backend Runs on PORT 5000 with command nodemon
+### How to eun Locally
+
+The frontend runs on PORT 3030 with command Npm run dev, while the backend Runs on PORT 5000 with command nodemon
 
 ---
 
