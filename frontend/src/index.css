@@ -34,3 +34,21 @@ input {
   font-size: 15px;
   border-bottom: 1px solid black;
 }
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+.todo {
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 3s ease-in;
+}

@@ -5,12 +5,15 @@ import { task } from "../App";
 const Todo = ({ task }: { task: task }) => {
   return (
     <div className="todo">
-      <div>
-        <h5>{task.task}</h5>
-      </div>
-      <div className="icons">
-        <FaEdit className="icon" />
-        <AiFillDelete className="icon" />
+      <div>{task.task}</div>
+      <div className="d-flex justify-content-between align-items-center">
+        <span>
+          <FaEdit className="icon" />
+        </span>
+        <span className="mx-3">
+          {" "}
+          <AiFillDelete className="icon" />
+        </span>
       </div>
     </div>
   );
