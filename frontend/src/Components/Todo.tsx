@@ -21,7 +21,7 @@ const Todo: React.FC<todoComponentProps> = ({
   setShowUpdateBtn,
   fetchTodos,
 }) => {
-  // handleEdit
+  // handle setid and update task
   function handleSetId(id: string, task: string) {
     setId(id);
     setTask(task);
