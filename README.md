@@ -1,5 +1,7 @@
 # TODOLIST
 
+## [StraitPay](https://strait-pay.vercel.app/)
+
 Here are some key features of this web application:
 
 1. Task Creation and Listing:
@@ -44,3 +46,5 @@ Packages
 ---
 
 The frontend runs on PORT 3030 with command Npm run dev, while the backend Runs on PORT 5000 with command nodemon
+
+### Deployment
