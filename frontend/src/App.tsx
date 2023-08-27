@@ -87,11 +87,11 @@ function App() {
           />
           {showUpdateBtn ? (
             <button type="submit" onClick={updateTask}>
-              {loading ? <div className="spinner-border "></div> : "Update"}
+              Update
             </button>
           ) : (
             <button type="submit" onClick={addTask}>
-              {loading ? <div className="spinner-border "></div> : " Add"}
+              Add
             </button>
           )}
         </form>
