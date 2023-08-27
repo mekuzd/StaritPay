@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import httpClient from "./Config/httpClient";
 import { useState } from "react";
 import Todo from "./Components/Todo";
-import { ApiError, getError } from "./utils";
-export type task = { _id: string; task: string };
+import "react-toastify/dist/ReactToastify.css";
+import { getError } from "./utils";
+import { task } from "./Types/Task";
+import { ApiError } from "./Types/ApiError";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   const [tasks, setTasks] = useState<task[]>([]);
@@ -11,19 +14,19 @@ function App() {
   const [task, setTask] = useState<string>("");
   let isMounted = true;
 
-  // get all tasks
+  // get all tasks handler
+  const FetchTodos = async () => {
+    try {
+      setloading(true);
+      const response = await httpClient.get("/api/task");
+      setTasks(response.data.tasks);
+      setloading(false);
+    } catch (error) {
+      toast.error(getError(error as ApiError));
+      setloading(false);
+    }
+  };
   useEffect(() => {
-    const FetchTodos = async () => {
-      try {
-        setloading(true);
-        const response = await httpClient.get("/api/task");
-        setTasks(response.data.tasks);
-        setloading(false);
-      } catch (error) {
-        console.log(getError(error as ApiError));
-        setloading(false);
-      }
-    };
     if (isMounted) {
       FetchTodos();
     }
@@ -32,15 +35,26 @@ function App() {
     };
   }, []);
 
-  // Add tasks
-  // const addtask = async () => {
-  //   try {
-  //     // const response;
-  //   } catch (error) {}
-  // };
+  // Add tasks handler
+  const addtask = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (!task) {
+      toast.error(" please fill input field ");
+      return;
+    }
+    try {
+      const response = await httpClient.post("/api/task", { task });
+      toast.success(response.data.message);
+      setTask("");
+      FetchTodos();
+    } catch (error) {
+      toast.error(getError(error as ApiError));
+    }
+  };
 
   return (
     <>
+      <ToastContainer position="bottom-center" limit={1} />
       <div className="cont">
         <h1>To Dos</h1>
         <form className="top">
@@ -50,7 +64,9 @@ function App() {
             placeholder="Add todos"
             onChange={(e) => setTask(e.target.value)}
           />
-          <button type="submit">Add</button>
+          <button type="submit" onClick={addtask}>
+            Add
+          </button>
         </form>
         {loading ? (
           <div className=" center-screen">

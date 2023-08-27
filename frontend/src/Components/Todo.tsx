@@ -1,6 +1,6 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
-import { task } from "../App";
+import { task } from "../Types/Task";
 
 const Todo = ({ task }: { task: task }) => {
   return (
