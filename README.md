@@ -45,6 +45,11 @@ Packages
 
 ---
 
-The frontend runs on PORT 3030 with command Npm run dev, while the backend Runs on PORT 5000 with command nodemon
+## The frontend runs on PORT 3030 with command Npm run dev, while the backend Runs on PORT 5000 with command nodemon
+
+---
 
 ### Deployment
+
+- Frontend folder was deployed on Vercel
+- Backend folder was deployed on Render
