@@ -2,7 +2,14 @@
 
 ## [Todos](https://strait-pay.vercel.app/)
 
+### Deployment
+
+- Frontend folder was deployed on Vercel
+- Backend folder was deployed on Render
+
 Here are some key features of this web application:
+
+- The user needs to Login before the use of the app
 
 1. Task Creation and Listing:
    Users can create new tasks by entering task. The app then lists these tasks in a visually organized manner.
@@ -46,8 +53,3 @@ Packages
 The frontend runs on PORT 3030 with command Npm run dev, while the backend Runs on PORT 5000 with command nodemon
 
 ---
-
-### Deployment
-
-- Frontend folder was deployed on Vercel
-- Backend folder was deployed on Render
