@@ -6,9 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { getError } from "../utils";
 import { task } from "../Types/Task";
 import { ApiError } from "../Types/ApiError";
-import { toast } from "react-toastify";
 import { Store } from "../Provider/Store";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Todos = () => {
   const [tasks, setTasks] = useState<task[]>([]);
@@ -23,6 +23,7 @@ const Todos = () => {
   let isMounted = true;
 
   // get all tasks handler
+
   const fetchTodos = async () => {
     try {
       const response = await httpClient.get("/api/task");
@@ -33,6 +34,12 @@ const Todos = () => {
       setloading(false);
     }
   };
+
+  useEffect(() => {
+    if (!userInfo) {
+      return navigate("/signin/?redirect=/todos");
+    }
+  }, [userInfo]);
 
   // load Todos
   useEffect(() => {
@@ -45,11 +52,6 @@ const Todos = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("/signin/?redirect=/todos");
-    }
-  }, [userInfo, navigate]);
   // Add tasks handler
   const addTask = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -98,6 +100,8 @@ const Todos = () => {
 
   return (
     <>
+      <ToastContainer position="bottom-center" limit={1} />
+
       <div className="cont">
         <h1>To Dos</h1>
         <form className="top">
