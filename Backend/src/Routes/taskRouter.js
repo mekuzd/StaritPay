@@ -1,11 +1,11 @@
 const { Router } = require("express");
 const {
   createTask,
-  getAlltask,
   updateTask,
   deleteTask,
   getUserTask,
 } = require("../Controller/taskController");
+const auth = require("../middleware/Auth");
 
 const router = Router();
 router.get("/", getUserTask);

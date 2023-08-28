@@ -13,12 +13,10 @@ const registerUser = async (req, res) => {
     const user = await User.create({ name, email, password });
     const token = createJWT(user._id);
     res.status(200).json({
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: token,
-      },
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: token,
     });
   } catch (error) {
     res.status(500).json({ message: "please contact admin" });
@@ -38,12 +36,10 @@ const loginUser = async (req, res) => {
     }
     const token = createJWT(user._id);
     res.status(200).json({
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: token,
-      },
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: token,
     });
   } catch (error) {
     res.status(500).json({ message: "please contact admin" });
