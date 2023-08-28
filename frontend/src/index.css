@@ -29,11 +29,7 @@ h1 {
   border: 1px solid grey;
   transition: all 0.3s linear;
 }
-.top button:hover {
-  border: 1px solid grey;
-  color: white;
-  background-color: black;
-}
+
 input {
   border: none;
   outline: none;
@@ -53,7 +49,7 @@ input {
   border: 3px solid black;
   padding: 10px 20px;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
   color: black;
   display: flex;
   justify-content: space-between;

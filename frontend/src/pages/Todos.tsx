@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import httpClient from "../Config/httpClient";
 import { useState } from "react";
 import Todo from "../Components/Todo";
@@ -17,12 +17,14 @@ const Todos = () => {
   const [task, setTask] = useState<string>("");
   const [showUpdateBtn, setShowUpdateBtn] = useState<boolean>(false);
   const [id, SetId] = useState<string>("");
+  const inp = useRef<any>(null);
   const navigate = useNavigate();
-
   const { state } = useContext(Store);
   const { userInfo } = state;
   let isMounted = true;
-
+  useEffect(() => {
+    inp.current.focus();
+  });
   // get all tasks handler
   const fetchTodos = async () => {
     try {
@@ -104,20 +106,29 @@ const Todos = () => {
       <ToastContainer position="bottom-center" limit={1} />
       <NavbarComp />
       <div className="cont">
-        <h1>To Dos</h1>
+        <h1 className="my-4">To Do App </h1>
         <form className="top">
           <input
+            ref={inp}
             type="text"
             value={task}
             placeholder="Add todos"
             onChange={(e) => setTask(e.target.value)}
           />
           {showUpdateBtn ? (
-            <button type="submit" onClick={updateTask}>
+            <button
+              type="submit"
+              className="btn btn-outline-dark"
+              onClick={updateTask}
+            >
               Update
             </button>
           ) : (
-            <button type="submit" onClick={addTask}>
+            <button
+              type="submit"
+              className="btn btn-outline-dark"
+              onClick={addTask}
+            >
               Add
             </button>
           )}

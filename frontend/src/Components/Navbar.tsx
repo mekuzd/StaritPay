@@ -14,17 +14,16 @@ const NavbarComp = () => {
   };
 
   return (
-    <Navbar bg={"light"} variant={"light"} expand="lg">
+    <Navbar bg={"dark"} variant={"dark"} expand="lg">
       <Nav>
         {userInfo ? (
-          <NavDropdown title={"welcome " + userInfo.email}>
-            <Link
-              className="dropdown-item"
-              to={"#signout"}
+          <NavDropdown title={"welcome " + userInfo.email} className="mx-3">
+            <button
+              className="dropdown-item btn btn-outline-dark"
               onClick={signoutHandler}
             >
               Sign Out
-            </Link>
+            </button>
           </NavDropdown>
         ) : (
           <Link className="nav-link" to={"/signin"}>
