@@ -6,6 +6,10 @@ const task = new Schema(
       type: Schema.Types.String,
       required: true,
     },
+    host: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,

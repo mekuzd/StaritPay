@@ -2,7 +2,7 @@ const Task = require("../Model/task");
 
 const createTask = async (req, res) => {
   try {
-    const task = await Task.create({ task: req.body.task });
+    const task = await Task.create({ task: req.body.task, host: req.user._id });
     res.status(200).json({ task, message: "task created" });
   } catch (error) {
     res.status(500).json({ message: "please contact your admin" });
@@ -11,7 +11,10 @@ const createTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
   try {
-    const taskExist = await Task.findOne({ _id: req.params.id });
+    const taskExist = await Task.findOne({
+      _id: req.params.id,
+      host: req.user._id,
+    });
     if (!taskExist) {
       return res
         .status(404)
@@ -27,7 +30,10 @@ const updateTask = async (req, res) => {
 };
 const deleteTask = async (req, res) => {
   try {
-    const taskExist = await Task.findOne({ _id: req.params.id });
+    const taskExist = await Task.findOne({
+      _id: req.params.id,
+      host: req.user._id,
+    });
     if (!taskExist) {
       return res
         .status(404)
@@ -40,9 +46,9 @@ const deleteTask = async (req, res) => {
   }
 };
 
-const getAlltask = async (req, res) => {
+const getUserTask = async (req, res) => {
   try {
-    const tasks = await Task.find({});
+    const tasks = await Task.find({ host: req.user._id });
     res.status(200).json({ tasks });
   } catch (error) {
     res.status(500).json({ message: "please contact your admin" });
@@ -52,5 +58,5 @@ module.exports = {
   createTask,
   updateTask,
   deleteTask,
-  getAlltask,
+  getUserTask,
 };
