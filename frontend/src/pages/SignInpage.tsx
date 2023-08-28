@@ -54,7 +54,6 @@ const SignIn = () => {
             type="email"
             required
             onChange={(e) => setemail(e.target.value)}
-            className="form-control"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
