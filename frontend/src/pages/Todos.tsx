@@ -61,9 +61,10 @@ const Todos = () => {
     }
     setTasks([...tasks, { task: task, _id: String(Date.now()) }]); // virtual addition before db response
     setTask("");
+    toast.success("task created");
+
     try {
       await httpClient.post("/api/task", { task });
-      toast.success("task created");
       fetchTodos();
     } catch (error) {
       toast.error(getError(error as ApiError));
@@ -88,10 +89,10 @@ const Todos = () => {
     setTasks(Tasks);
     setTask("");
     setShowUpdateBtn(false);
+    toast.success("task updated successfully");
 
     try {
       await httpClient.patch(`/api/task/${id}`, { task });
-      toast.success("task updated successfully");
       fetchTodos();
     } catch (error) {
       toast.error(getError(error as ApiError));
