@@ -46,7 +46,7 @@ const SignIn = () => {
     <Container className="small-container">
       <ToastContainer position="bottom-center" limit={1} />
 
-      <h1 className="my-3">Sign In</h1>
+      <h1 className="my-4">Sign In</h1>
       <Form onSubmit={SignInUserInfo}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
@@ -54,18 +54,20 @@ const SignIn = () => {
             type="email"
             required
             onChange={(e) => setemail(e.target.value)}
+            className="form"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
+        <Form.Group className="mb-3 " controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             required
+            className="form"
             onChange={(e) => setpassword(e.target.value)}
           />
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">
+          <Button type="submit" className="w-100">
             {loading ? <div className="spinner-border "></div> : "Sign in"}
           </Button>
         </div>

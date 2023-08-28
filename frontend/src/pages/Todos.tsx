@@ -103,7 +103,7 @@ const Todos = () => {
 
   return (
     <>
-      <ToastContainer position="bottom-center" limit={1} />
+      <ToastContainer position="top-right" limit={1} />
       <NavbarComp />
       <div className="cont">
         <h1 className="my-4">To Do App </h1>
@@ -116,19 +116,11 @@ const Todos = () => {
             onChange={(e) => setTask(e.target.value)}
           />
           {showUpdateBtn ? (
-            <button
-              type="submit"
-              className="btn btn-outline-dark"
-              onClick={updateTask}
-            >
+            <button type="submit" className="btn btn-dark" onClick={updateTask}>
               Update
             </button>
           ) : (
-            <button
-              type="submit"
-              className="btn btn-outline-dark"
-              onClick={addTask}
-            >
+            <button type="submit" className="btn btn-dark" onClick={addTask}>
               Add
             </button>
           )}

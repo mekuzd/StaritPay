@@ -53,11 +53,15 @@ const SignUp = () => {
     <>
       <ToastContainer position="bottom-center" limit={1} />
       <Container className="small-container">
-        <h1 className="my-3">Sign Up</h1>
+        <h1 className="my-4">Sign Up</h1>
         <Form onSubmit={SignUpUserInfo}>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control onChange={(e) => setName(e.target.value)} required />
+            <Form.Control
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="form"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="email">
@@ -66,6 +70,7 @@ const SignUp = () => {
               type="email"
               required
               onChange={(e) => setEmail(e.target.value)}
+              className="form"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="password">
@@ -74,6 +79,7 @@ const SignUp = () => {
               type="password"
               required
               onChange={(e) => setPassword(e.target.value)}
+              className="form"
             />
             <Form.Group className="mb-3" controlId="confirmPassword">
               <Form.Label>Confirm Password</Form.Label>
@@ -81,11 +87,12 @@ const SignUp = () => {
                 type="password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                className="form"
               />
             </Form.Group>
           </Form.Group>
           <div className="mb-3">
-            <Button type="submit">
+            <Button type="submit" className="w-100">
               {loading ? <div className="spinner-border "></div> : "Sign Up"}
             </Button>
           </div>

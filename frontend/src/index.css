@@ -21,9 +21,9 @@ h1 {
   gap: 20px;
 }
 .top button {
-  border-radius: 20px;
+  border-radius: 10px;
   width: 100px;
-  color: black;
+  color: white;
   padding: 5px;
   cursor: pointer;
   border: 1px solid grey;
@@ -46,18 +46,23 @@ input {
   min-height: 100vh;
 }
 .todo {
-  border: 3px solid black;
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 30px;
-  color: black;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgb(66, 66, 66);
 }
 .icon {
   cursor: pointer;
 }
 .small-container {
   max-width: 600px !important;
+}
+.form:focus {
+  border: 1px solid black !important;
+  outline-color: none !important;
+  box-shadow: none !important;
 }
