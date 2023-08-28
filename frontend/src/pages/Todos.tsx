@@ -87,12 +87,12 @@ const Todos = () => {
     });
     setTasks(Tasks);
     setTask("");
+    setShowUpdateBtn(false);
 
     try {
       await httpClient.patch(`/api/task/${id}`, { task });
       toast.success("task updated successfully");
       fetchTodos();
-      setShowUpdateBtn(false);
     } catch (error) {
       toast.error(getError(error as ApiError));
     }
