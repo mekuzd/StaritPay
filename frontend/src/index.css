@@ -21,10 +21,18 @@ h1 {
   gap: 20px;
 }
 .top button {
+  border-radius: 20px;
+  width: 100px;
+  color: black;
+  padding: 5px;
+  cursor: pointer;
+  border: 1px solid grey;
+  transition: all 0.3s linear;
+}
+.top button:hover {
+  border: 1px solid grey;
   color: white;
   background-color: black;
-  padding: 15px;
-  cursor: pointer;
 }
 input {
   border: none;
@@ -42,11 +50,11 @@ input {
   min-height: 100vh;
 }
 .todo {
+  border: 3px solid black;
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 10px;
-  background-color: black;
-  color: white;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;

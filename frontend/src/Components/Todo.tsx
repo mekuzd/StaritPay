@@ -38,6 +38,8 @@ const Todo: React.FC<todoComponentProps> = ({
     const task = tasks.filter((todo) => todo._id !== id); //virtual removal before server response
     setTasks(task);
     toast.success("task deleted successfully");
+    setTask("");
+    setShowUpdateBtn(false);
     try {
       await httpClient.delete(`/api/task/${id}`);
       fetchTodos();
@@ -55,7 +57,7 @@ const Todo: React.FC<todoComponentProps> = ({
         </span>
         <span className="mx-3" onClick={(e) => deleteTask(e, task._id)}>
           {" "}
-          <AiFillDelete className="icon" />
+          <AiFillDelete className="icon text-danger" />
         </span>
       </div>
     </div>
