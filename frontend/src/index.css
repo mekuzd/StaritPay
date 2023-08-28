@@ -8,7 +8,7 @@ body {
 }
 .cont {
   max-width: 600px;
-  margin: auto;
+  margin: 20px auto;
   padding: 0px 10px;
 }
 h1 {
@@ -53,4 +53,7 @@ input {
 }
 .icon {
   cursor: pointer;
+}
+.small-container {
+  max-width: 600px !important;
 }

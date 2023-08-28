@@ -30,7 +30,7 @@ const SignUp = () => {
     }
     try {
       dispatch({ type: "LOADING" });
-      const result = await httpClient.post("/api/users/signup", {
+      const result = await httpClient.post("/api/user/", {
         name,
         email,
         password,
@@ -85,8 +85,8 @@ const SignUp = () => {
             </Form.Group>
           </Form.Group>
           <div className="mb-3">
-            <Button type="submit" disabled={loading}>
-              Sign Up
+            <Button type="submit">
+              {loading ? <div className="spinner-border "></div> : "Sign Up"}
             </Button>
           </div>
           <div className="mb-3">

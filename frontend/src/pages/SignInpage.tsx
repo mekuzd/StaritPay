@@ -54,6 +54,7 @@ const SignIn = () => {
             type="email"
             required
             onChange={(e) => setemail(e.target.value)}
+            className="form-control"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
@@ -65,8 +66,8 @@ const SignIn = () => {
           />
         </Form.Group>
         <div className="mb-3">
-          <Button disabled={loading} type="submit">
-            Sign In
+          <Button type="submit">
+            {loading ? <div className="spinner-border "></div> : "Sign in"}
           </Button>
         </div>
         <div className="mb-3">

@@ -9,6 +9,7 @@ import { ApiError } from "../Types/ApiError";
 import { Store } from "../Provider/Store";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import NavbarComp from "../Components/Navbar";
 
 const Todos = () => {
   const [tasks, setTasks] = useState<task[]>([]);
@@ -23,7 +24,6 @@ const Todos = () => {
   let isMounted = true;
 
   // get all tasks handler
-
   const fetchTodos = async () => {
     try {
       const response = await httpClient.get("/api/task");
@@ -62,8 +62,8 @@ const Todos = () => {
     setTasks([...tasks, { task: task, _id: String(Date.now()) }]); // virtual addition before db response
     setTask("");
     try {
-      const response = await httpClient.post("/api/task", { task });
-      toast.success(response.data.message);
+      await httpClient.post("/api/task", { task });
+      toast.success("task created");
       fetchTodos();
     } catch (error) {
       toast.error(getError(error as ApiError));
@@ -77,7 +77,7 @@ const Todos = () => {
       toast.error(" please fill input field ");
       return;
     }
-    //virtual update  before db response
+    //virtual update before db response
     const Tasks = tasks.map((tasks) => {
       if (tasks._id == id) {
         return { ...tasks, task: task };
@@ -89,8 +89,8 @@ const Todos = () => {
     setTask("");
 
     try {
-      const response = await httpClient.patch(`/api/task/${id}`, { task });
-      toast.success(response.data.message);
+      await httpClient.patch(`/api/task/${id}`, { task });
+      toast.success("task updated successfully");
       fetchTodos();
       setShowUpdateBtn(false);
     } catch (error) {
@@ -101,7 +101,7 @@ const Todos = () => {
   return (
     <>
       <ToastContainer position="bottom-center" limit={1} />
-
+      <NavbarComp />
       <div className="cont">
         <h1>To Dos</h1>
         <form className="top">

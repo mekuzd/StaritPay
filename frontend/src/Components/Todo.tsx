@@ -38,8 +38,8 @@ const Todo: React.FC<todoComponentProps> = ({
     const task = tasks.filter((todo) => todo._id !== id); //virtual removal before server response
     setTasks(task);
     try {
-      const response = await httpClient.delete(`/api/task/${id}`);
-      toast.success(response.data.message);
+      await httpClient.delete(`/api/task/${id}`);
+      toast.success("task deleted successfully");
       fetchTodos();
     } catch (error) {
       toast.error(getError(error as ApiError));
